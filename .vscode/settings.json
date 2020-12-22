@@ -1,8 +1,8 @@
 {
-  "python.pythonPath": "/usr/bin/python",
+  "python.pythonPath": "/usr/bin/python3",
   "python.linting.flake8Enabled": true,
   "python.linting.enabled": true,
   "python.autoComplete.extraPaths": [
-    "\\wsl$Ubuntu-18.04homemetisDocuments\nomad-coderseleniumpro"
+    "/home/metis/.local/share/virtualenvs/seleniumpro-GmSkAZun/lib/python3.8/site-packages"
   ]
 }

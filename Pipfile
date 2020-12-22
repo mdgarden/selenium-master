@@ -4,13 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-selenium = "*"
 
 [requires]
 python_version = "3.8"
 
 [dev-packages]
-flake8 = "*"
-
-[pipenv]
-allow_prereleases = true
