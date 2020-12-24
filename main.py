@@ -1,4 +1,12 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+import os
 
-browser = webdriver.Chrome(ChromeDriverManager().install())
+options = webdriver.ChromeOptions()
+path = os.path.abspath("account-data/account_3")
+options.add_argument("user-data-dir=" + path)
+# other options...
+chromedriver = "./webdrivers/chrome"
+driver = webdriver.Chrome(executable_path=chromedriver, options=options)
+
+# do stuff...
+driver.close()
