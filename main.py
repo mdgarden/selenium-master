@@ -23,7 +23,7 @@ shitty_element = WebDriverWait(browser, 10).until(
     EC.presence_of_element_located((By.CLASS_NAME, "g-blk"))
 )
 
-print(shitty_element)
+shitty_element.screenshot("shitty.png")
 
 # search_results = browser.find_elements_by_class_name("g")
 
@@ -33,3 +33,5 @@ print(shitty_element)
 #         search_result.screenshot(f"screenshots/{KEYWORD}x{index}.png")
 
 # browser.quit()
+
+#  TODO : 파이썬과 모듈 경로 확인하고 정리하기
