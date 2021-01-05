@@ -4,34 +4,33 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
-
 KEYWORD = "buy domain"
-
 browser = webdriver.Chrome(ChromeDriverManager().install())
-
 browser.get("https://google.com")
-
-
 search_bar = browser.find_element_by_class_name("gLFyf")
-
-
 search_bar.send_keys(KEYWORD)
 search_bar.send_keys(Keys.ENTER)
+shitty_element = WebDriverWait(browser, 10).until(
+    EC.presence_of_element_located((By.CLASS_NAME, "g-blk"))
+)
 
 
 shitty_element = WebDriverWait(browser, 10).until(
     EC.presence_of_element_located((By.CLASS_NAME, "g-blk"))
 )
 
-shitty_element.screenshot("shitty.png")
 
-# search_results = browser.find_elements_by_class_name("g")
+browser.execute_script(
+    """
+const shitty = arguments[0];
+shitty.parentElement.removeChild(shitty)
+""",
+    shitty_element,
+)
 
-# for index, search_result in enumerate(search_results):
-#     class_name = search_result.get_attribute("class")
-#     if "kno-kp mnr-c g-blk" not in class_name:
-#         search_result.screenshot(f"screenshots/{KEYWORD}x{index}.png")
+search_results = browser.find_elements_by_class_name("g")
 
-# browser.quit()
+for index, search_result in enumerate(search_results):
+    search_result.screenshot(f"screenshots/{KEYWORD}x{index}.png")
 
-#  TODO : 파이썬과 모듈 경로 확인하고 정리하기
+browser.quit()
