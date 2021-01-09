@@ -1,3 +1,4 @@
+import csv
 import time
 from selenium import webdriver
 from selenium import ActionChains
@@ -9,6 +10,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 max_hashtags = 15
+initial_hashtag = "dog"
 browser = webdriver.Chrome(ChromeDriverManager().install())
 counted_hashtags = []
 used_hashtags = []
@@ -54,6 +56,12 @@ def get_related(target_url):
         browser.switch_to.window(browser.window_handles[0])
         get_related(browser.current_url)
 
-initial_hashtag = "dog"
 get_related(f"https://www.instagram.com/explore/tags/{initial_hashtag}")
-print(counted_hashtags)
+
+file = open(f"{initial_hashtag}-report.csv", "w")
+writer = csv.writer(file)
+writer.writerow(["Hashtag", "Post Count"])
+
+for hashtag in counted_hashtags:
+    writer.writerow(hashtag)
+browser.quit()
